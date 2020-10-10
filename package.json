@@ -1,0 +1,29 @@
+{
+  "name": "GitActivitySync",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "git@github.com:tim-ings/GitActivitySync.git",
+  "author": "Tim Ings",
+  "license": "GPL3",
+  "private": true,
+  "scripts": {
+    "validate": "tsc --noEmit",
+    "build": "tsc",
+    "test": "jest src/",
+    "start": "ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.7",
+    "@types/uuid": "^8.3.0",
+    "eslint": "^7.11.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "@octokit/rest": "^18.0.6",
+    "node-fetch": "^2.6.1",
+    "node-html-parser": "^1.3.1",
+    "simple-git": "^2.21.0",
+    "uuid": "^8.3.1"
+  }
+}
