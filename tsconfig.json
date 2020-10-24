@@ -9,7 +9,7 @@
     "sourceMap": true,
     "removeComments": true,
     "experimentalDecorators": true,
-    "target": "ES2018",
+    "target": "ESNext",
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "importHelpers": true,

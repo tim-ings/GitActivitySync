@@ -1,6 +1,5 @@
 import fetch from 'node-fetch';
 import { parse } from 'node-html-parser';
-import { Octokit } from '@octokit/rest';
 
 export type ContributionsMap = Map<Date, number>;
 
