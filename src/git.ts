@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as rimraf from 'rimraf';
 import { ContributionsMap } from './github';
 
-const gitService = (baseDir: string, remote: string) => {
+const gitService = (baseDir: string, remote: string, branch: string) => {
   try { fs.mkdirSync(baseDir, { recursive: true }); } catch { }
   const git = simpleGit({ baseDir });
   process.on('exit', () => rimraf.sync(baseDir));
@@ -14,10 +14,10 @@ const gitService = (baseDir: string, remote: string) => {
     pull: async () => {
       await git.init();
       await git.addRemote('origin', remote);
-      await git.pull('origin', 'master');
+      await git.pull('origin', branch);
     },
     push: async () => {
-      await git.push(remote, 'master');
+      await git.push(remote, branch);
     },
     commit: async (date: Date) => {
       const message = `GitActivitySync: ${date.toDateString()}`;
@@ -28,9 +28,9 @@ const gitService = (baseDir: string, remote: string) => {
   }
 }
 
-export const syncContributions = async (remote: string, contributions: ContributionsMap) => {
+export const syncContributions = async (remote: string, contributions: ContributionsMap, branch: string) => {
   const tmpDir = `./tmp/${uuid()}`;
-  const { pull, push, commit, log } = gitService(tmpDir, remote);
+  const { pull, push, commit, log } = gitService(tmpDir, remote, branch);
 
   console.log(`Pulling remote: ${remote}`);
   await pull();
