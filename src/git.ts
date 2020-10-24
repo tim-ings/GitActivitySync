@@ -11,13 +11,15 @@ const gitService = (baseDir: string, remote: string, branch: string) => {
   const commitFile = `${baseDir}/README.md`;
 
   return {
-    pull: async () => {
+    pull: async (keyPath: string) => {
       await git.init();
+      await git.addConfig('core.sshCommand', `ssh -i ${keyPath}`);
       await git.addRemote('origin', remote);
       await git.pull('origin', branch);
     },
-    push: async () => {
-      await git.push(remote, branch);
+    push: async (keyPath: string) => {
+      await git.addConfig('core.sshCommand', `ssh -i ${keyPath}`);
+      await git.push(remote, branch, {  });
     },
     commit: async (date: Date, name: string, email: string) => {
       const message = `GitActivitySync: ${date.toDateString()}`;
@@ -29,12 +31,12 @@ const gitService = (baseDir: string, remote: string, branch: string) => {
   }
 }
 
-export const syncContributions = async (remote: string, contributions: ContributionsMap, branch: string, name: string, email: string) => {
+export const syncContributions = async (remote: string, contributions: ContributionsMap, branch: string, name: string, email: string, keyPath: string) => {
   const tmpDir = `./tmp/${uuid()}`;
   const { pull, push, commit, log } = gitService(tmpDir, remote, branch);
 
   console.log(`Pulling remote: ${remote}`);
-  await pull();
+  await pull(keyPath);
 
   const { all } = await log();
   const existingDates = new Set(all.map(entry => new Date(entry.date).toDateString()));
@@ -48,6 +50,6 @@ export const syncContributions = async (remote: string, contributions: Contribut
     }
   }
 
-  await push();
+  await push(keyPath);
   console.log(`Pushed remote: ${remote}`);
 };
