@@ -7,6 +7,7 @@ COPY src/ src/
 RUN yarn build
 
 FROM node:12-alpine as prod
+RUN apk add --no-cache git
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --prod
