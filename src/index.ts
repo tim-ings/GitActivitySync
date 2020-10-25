@@ -5,14 +5,14 @@ import * as fs from 'fs';
 
 const keyPath = './id_rsa.temp';
 
-const throwError = (msg?: string) => { throw Error(msg) };
+const throwMessage = (msg?: string) => { throw msg };
 const env = {
-  sourceGithubUser: process.env.SOURCE_USER ?? throwError('source github user not provided'),
-  destinationGitRemote: process.env.DESTINATION_REMOTE ?? throwError('destination remote not provided'),
-  authorName: process.env.GIT_AUTHOR_NAME ?? throwError('git author name not provided'),
-  authorEmail: process.env.GIT_AUTHOR_EMAIL ?? throwError('git author email not provided'),
-  branch: process.env.DESTINATION_BRANCH ?? throwError('destination branch not provided'),
-  deployKey: process.env.DEPLOY_KEY ?? throwError('deploy key not provided'),
+  sourceGithubUser: process.env.SOURCE_USER ?? throwMessage('Missing env: SOURCE_USER'),
+  destinationGitRemote: process.env.DESTINATION_REMOTE ?? throwMessage('Missing env: DESTINATION_REMOTE'),
+  authorName: process.env.GIT_AUTHOR_NAME ?? throwMessage('Missing env: GIT_AUTHOR_NAME'),
+  authorEmail: process.env.GIT_AUTHOR_EMAIL ?? throwMessage('Missing env: GIT_AUTHOR_EMAIL'),
+  branch: process.env.DESTINATION_BRANCH ?? throwMessage('Missing env: DESTINATION_BRANCH'),
+  deployKey: process.env.DEPLOY_KEY ?? throwMessage('Missing env: DEPLOY_KEY'),
 }
 
 const saveKey = (key: string) => fs.writeFileSync(keyPath, key);
