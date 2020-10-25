@@ -12,4 +12,5 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --prod
 COPY --from=builder /app/dist/ ./dist/
-CMD ["node", "/app/dist/index.js"]
+COPY entrypoint.sh ./
+CMD ["sh", "entrypoint.sh"]

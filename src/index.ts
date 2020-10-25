@@ -1,9 +1,5 @@
 import { syncContributions } from './git';
 import { loadContributions } from './github';
-import { decode } from 'js-base64';
-import fs from 'fs';
-
-const keyPath = './id_rsa.temp';
 
 const throwMessage = (msg?: string) => { throw msg };
 const env = {
@@ -15,15 +11,10 @@ const env = {
   deployKey: process.env.DEPLOY_KEY ?? throwMessage('Missing env: DEPLOY_KEY'),
 }
 
-const saveKey = (key: string) => fs.writeFileSync(keyPath, key);
-const removeKey = () => fs.unlinkSync(keyPath);
-
 const main = async () => {
-  process.on('exit', removeKey);
-  saveKey(decode(env.deployKey));
   const sourceContributions = await loadContributions(env.sourceGithubUser);
   console.log(`Found ${sourceContributions.size} contributions for ${env.sourceGithubUser}`);
-  await syncContributions(env.destinationGitRemote, sourceContributions, env.branch, env.authorName, env.authorEmail, keyPath);
+  await syncContributions(env.destinationGitRemote, sourceContributions, env.branch, env.authorName, env.authorEmail);
 }
 
 main();
