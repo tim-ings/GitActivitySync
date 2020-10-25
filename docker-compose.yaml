@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  citsbot:
+    container_name: git-activity-sync
+    image: ghcr.io/tim-ings/git-activity-sync:latest
+    env_file: /home/tim/envs/git-activity-sync/.env

@@ -1,7 +1,7 @@
 import { syncContributions } from './git';
 import { loadContributions } from './github';
 import { decode } from 'js-base64';
-import * as fs from 'fs';
+import fs from 'fs';
 
 const keyPath = './id_rsa.temp';
 

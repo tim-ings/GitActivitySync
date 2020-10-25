@@ -1,7 +1,7 @@
 import simpleGit from 'simple-git';
 import { v4 as uuid } from 'uuid';
-import * as fs from 'fs';
-import * as rimraf from 'rimraf';
+import fs from 'fs';
+import rimraf from 'rimraf';
 import { ContributionsMap } from './github';
 
 const gitService = (baseDir: string, remote: string, branch: string) => {
