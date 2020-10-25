@@ -32,5 +32,4 @@ jobs:
         file: ./Dockerfile
         push: true
         target: prod
-        tags: |
-          ghcr.io/tim-ings/git-activity-sync:latest
+        tags: ghcr.io/tim-ings/git-activity-sync:latest
