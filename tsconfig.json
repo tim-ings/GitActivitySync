@@ -1,23 +1,11 @@
 {
+  "extends": "@tsconfig/node12/tsconfig.json",
   "compileOnSave": true,
   "compilerOptions": {
-    "module": "ES2020",
-    "strict": true,
-    "baseUrl": "src",
     "outDir": "dist",
     "alwaysStrict": true,
-    "sourceMap": true,
-    "removeComments": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ES2020",
-    "emitDecoratorMetadata": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "lib": ["ES2020"],
     "types": [
-      "node",
-      "jest"
+      "node"
     ],
     "typeRoots": [
       "node_modules/@types"

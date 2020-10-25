@@ -1,14 +1,9 @@
-FROM node:14-alpine as base
+FROM node:12-alpine as builder
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --pure-lockfile --network-timeout 600000
 COPY tsconfig.json tsconfig.json
 COPY src/ src/
-
-FROM base as dev
-CMD ["yarn", "watch"]
-
-FROM base as builder
 RUN yarn build
 
 FROM node:12-alpine as prod
