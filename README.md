@@ -13,4 +13,4 @@ Set up a job to run this image once per day, making sure to pass in the followin
 | GIT_AUTHOR_NAME | The same name you use when making commits with your main account | `Tim Ings` |
 | GIT_AUTHOR_EMAIL | The same email you use when making commits with your main account | `tim@tim-ings.com` |
 | DESTINATION_BRANCH | The branch of the mirror repo that the commits will be made to | `main` |
-| DEPLOY_KEY | Base64 encoded private [deploy key](https://docs.github.com/en/free-pro-team@latest/developers/overview/managing-deploy-keys#deploy-keys) that has write access | `aHVudGVyMiAtbgo=` |
+| DEPLOY_KEY | Base64 encoded private [deploy key](https://docs.github.com/en/free-pro-team@latest/developers/overview/managing-deploy-keys#deploy-keys) that has write access to your mirror repo | `aHVudGVyMiAtbgo=` |
