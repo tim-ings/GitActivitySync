@@ -1,0 +1,4 @@
+apiVersion: v2
+description: Syncs github activity between accounts
+name: git-activity-sync
+version: 1.0.0

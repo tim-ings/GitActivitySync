@@ -1,0 +1,31 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: git-activity-sync
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: git-activity-sync
+              image: {{ $.Values.image }}
+              imagePullPolicy: Always
+              env:
+                - name: SOURCE_USER
+                  value: {{ $.Values.sourceUser }}
+                - name: DESTINATION_REMOTE
+                  value: {{ $.Values.destinationRemote }}
+                - name: GIT_AUTHOR_NAME
+                  value: {{ $.Values.gitAuthorName }}
+                - name: GIT_AUTHOR_EMAIL
+                  value: {{ $.Values.gitAuthorEmail }}
+                - name: DESTINATION_BRANCH
+                  value: {{ $.Values.destinationBranch }}
+                - name: DEPLOY_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: git-activity-sync
+                      key: deploy-key
+          restartPolicy: OnFailure

@@ -1,0 +1,10 @@
+secrets:
+  config: prod/projects/git-activity-sync
+
+image: ghcr.io/tim-ings/git-activity-sync:latest
+
+sourceUser: "tim-ings-vgw"
+gitAuthorName: "Tim Ings"
+gitAuthorEmail: "tim@tim-ings.com"
+destinationRemote: git@github.com:tim-ings/vgw-activity-mirror.git
+destinationBranch: "main"
