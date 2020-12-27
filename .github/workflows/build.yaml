@@ -36,4 +36,4 @@ jobs:
           file: ./Dockerfile
           push: true
           target: prod
-          tags: ghcr.io/tim-ings/git-activity-sync:${{ steps.vars.outputs.tag }}
+          tags: ghcr.io/tim-ings/git-activity-sync:latest,ghcr.io/tim-ings/git-activity-sync:${{ steps.vars.outputs.tag }}
