@@ -1,9 +1,9 @@
 name: build
 
-on: 
+on:
   push:
-      branches:    
-          - main
+    tags:
+      - "*"
 
 jobs:
   build:
