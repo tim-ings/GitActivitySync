@@ -2,6 +2,7 @@ secrets:
   config: prod/projects/git-activity-sync
 
 image: ghcr.io/tim-ings/git-activity-sync:latest
+schedule: "0 0 * * *"
 
 sourceUser: "tim-ings-vgw"
 gitAuthorName: "Tim Ings"
